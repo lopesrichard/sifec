@@ -1,0 +1,14 @@
+﻿@{
+    var path = Url.RouteUrl(ViewContext.RouteData.Values);
+    var isAdminArea = path?.StartsWith("/admin") ?? false;
+    var isLoggedIn = User.Identity?.IsAuthenticated ?? false;
+
+    if (isAdminArea && isLoggedIn)
+    {
+        Layout = "_Admin";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
