@@ -1,0 +1,48 @@
+:root {
+  --bs-border-radius: 0;
+  --bs-primary-rgb: var(--primary-rgb);
+  --bs-secondary-rgb: var(--secondary-rgb);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary-dark);
+  --bs-btn-hover-border-color: var(--primary-dark);
+  --bs-btn-active-bg: var(--primary-dark);
+  --bs-btn-active-border-color: var(--primary-dark);
+  --bs-btn-disabled-bg: var(--primary);
+  --bs-btn-disabled-border-color: var(--primary);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--secondary);
+  --bs-btn-border-color: var(--secondary);
+  --bs-btn-hover-bg: var(--secondary-dark);
+  --bs-btn-hover-border-color: var(--secondary-dark);
+  --bs-btn-active-bg: var(--secondary-dark);
+  --bs-btn-active-border-color: var(--secondary-dark);
+  --bs-btn-disabled-bg: var(--secondary);
+  --bs-btn-disabled-border-color: var(--secondary);
+}
+
+.btn-danger {
+  --bs-btn-bg: var(--danger);
+  --bs-btn-border-color: var(--danger);
+  --bs-btn-hover-bg: var(--danger-dark);
+  --bs-btn-hover-border-color: var(--danger-dark);
+  --bs-btn-active-bg: var(--danger-dark);
+  --bs-btn-active-border-color: var(--danger-dark);
+  --bs-btn-disabled-bg: var(--danger);
+  --bs-btn-disabled-border-color: var(--danger);
+}
+
+.form-control {
+  border: none;
+  background-color: var(--background);
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem var(--primary-light);
+  background-color: var(--background);
+}

@@ -1,25 +1,30 @@
 @page
 @model Login
 
-<h1>Login</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/login.css" />
+}
 
-<form method="POST">
-    <div class="mb-3">
-        <label for="username">Usuário</label>
-        <input asp-for="Username" class="form-control" type="text" name="username" />
+<div class="card">
+    <div class="logo">
+        <span class="text-secondary">SIFE<span class="text-primary">C</span></span>
     </div>
-
-    <div class="mb-3">
-        <label for="password">Senha</label>
-        <input asp-for="Password" class="form-control" type="text" name="password" />
-    </div>
-
-    @if (@Model.Message != null)
-    {
-        <div class="alert alert-warning" role="alert">
-            @Model.Message
+    <form method="POST">
+        <div class="mb-3">
+            <input asp-for="Username" placeholder="Usuário" class="form-control" type="text" name="username" required />
         </div>
-    }
 
-    <button class="btn btn-primary">Entrar</button>
-</form>
+        <div class="mb-3">
+            <input asp-for="Password" placeholder="Senha" class="form-control" type="text" name="password" required />
+        </div>
+
+        @if (@Model.Message != null)
+        {
+            <div class="alert alert-warning" role="alert">
+                @Model.Message
+            </div>
+        }
+
+        <button class="btn btn-primary">Entrar</button>
+    </form>
+</div>
