@@ -1,0 +1,12 @@
+:root {
+  --primary: #feb273;
+  --primary-rgb: 254, 178, 115;
+  --primary-light: #fbcfab;
+  --primary-dark: #fe953f;
+  --secondary: #273c70;
+  --secondary-rgb: 39, 60, 112;
+  --secondary-dark: #3c5cad;
+  --danger: #ed4700;
+  --danger-dark: #c94107;
+  --background: #f8f8f8;
+}
