@@ -1,0 +1,30 @@
+body {
+  background-color: var(--secondary);
+}
+
+.form-control,
+.btn {
+  height: 60px;
+  font-size: 20px;
+}
+
+.card {
+  text-align: center;
+  padding: 15px;
+  width: 40%;
+  margin: auto;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo span {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 48px;
+}
+
+.btn {
+  width: 100%;
+  margin-top: 20px;
+}
