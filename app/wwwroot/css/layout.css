@@ -1,0 +1,13 @@
+html,
+body,
+.container {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+}
+
+* {
+  font-family: "Jost", sans-serif;
+}
