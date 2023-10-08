@@ -1,0 +1,14 @@
+* {
+  font-size: 22px;
+}
+
+small,
+footer {
+  font-size: 18px;
+}
+
+footer {
+  background-color: #3c5cad;
+  color: white;
+  padding: 20px;
+}

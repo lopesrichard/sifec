@@ -1,0 +1,49 @@
+﻿@model App.Pages.Voucher
+
+@{
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/voucher.css" />
+}
+
+<div>
+    <img src="img/background.jpg" alt="header" width="100%" />
+    <br />
+    <br />
+    <p>Olá <strong>@(Model.Simulation.Name)</strong>,</p>
+    <br />
+    <p>Será um prazer lhe atender na realização de mais este sonho.</p>
+
+    <p>
+        Simulação para o <strong>@(Model.Simulation.Semester)º</strong> semestre do curso
+        <strong>@(Model.Simulation.Course.Name)</strong> da instituição
+        <strong>@(Model.Simulation.Institution.Name)</strong>,
+        realizada <strong>@(Model.Simulation.CreatedAt.ToLongDateString())</strong>.
+    </p>
+    <p>
+        O valor total contratado será de <strong>R$ @(Model.Simulation.TotalValue)</strong>, a ser pago em 12x de
+        <strong>R$ @(Model.Simulation.InstallmentValue)</strong> com juros de
+        <strong>@(Model.Simulation.Fee)%</strong> ao mês.
+    </p>
+    <br />
+    <p><strong>Para dar sequência ao crédito, vamos precisar dos seguintes documentos do aluno e avalista:</strong>
+    </p>
+    <br />
+    <ul>
+        <li>Documento de identificação.</li>
+        <li>Comprovante de endereço atualizado.</li>
+        <li>Certidão de casamento.</li>
+        <li>Comprovante de renda atualizado.</li>
+    </ul>
+    <br />
+    <p>Agradecemos seu contato.</p>
+    <br />
+    <small>Chave de verificação: @(Model.Simulation.ValidationKey)</small>
+    <br />
+    <br />
+    <footer>
+        CAIXA ECONÔMICA FEDERAL - CNPJ 00.360.305/0001-04. SBS QUADRA 4 LT 3/4, ASA SUL - CEP 70.070-140 BRASILIA - DF
+    </footer>
+</div>
