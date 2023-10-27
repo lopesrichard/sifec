@@ -8,6 +8,9 @@ namespace App.Configuration
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISimulationRepository, SimulationRepository>();
+            services.AddScoped<IInstitutionRepository, InstitutionRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
         }
     }
 }

@@ -26,6 +26,13 @@ namespace App.Repositories
             return await Set.Where(predicate).SingleOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<T>> List(Expression<Func<T, bool>>? predicate = null)
+        {
+            var query = Set.AsQueryable();
+            if (predicate != null) query = query.Where(predicate);
+            return await query.ToListAsync();
+        }
+
         public async Task<IEnumerable<T>> List(int page, int limit, Expression<Func<T, bool>>? predicate = null)
         {
             var skip = page == 1 ? 0 : (page - 1) * limit;
