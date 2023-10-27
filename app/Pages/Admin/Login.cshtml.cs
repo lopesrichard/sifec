@@ -22,8 +22,6 @@ namespace App.Pages.Admin
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Message = null;
-
             var result = await _service.Login(Username, Password);
 
             if (result.Success)
