@@ -10,6 +10,10 @@ namespace App.Configuration
             services.AddScoped<IVoucherService, VoucherService>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
             services.AddScoped<IPdfService, PdfService>();
+            services.AddScoped<IInstitutionService, InstitutionService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ISimulationService, SimulationService>();
         }
     }
 }
