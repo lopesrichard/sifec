@@ -37,7 +37,8 @@
   --bs-btn-disabled-border-color: var(--danger);
 }
 
-.form-control {
+.form-control,
+.form-select {
   border: none;
   background-color: var(--background);
 }
