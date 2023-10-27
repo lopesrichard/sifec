@@ -1,25 +1,41 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "watch",
-      "command": "dotnet",
-      "type": "process",
-      "linux": {
-        "options": {
-          "env": {
-            "DOTNET_USE_POLLING_FILE_WATCHER": "true"
-          }
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/App.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/App.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/App.csproj"
+            ],
+            "problemMatcher": "$msCompile"
         }
-      },
-      "args": [
-        "watch",
-        "run",
-        "${workspaceFolder}/App.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    }
-  ]
+    ]
 }
