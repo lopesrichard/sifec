@@ -5,10 +5,5 @@
         public Index() : base("Simulador")
         {
         }
-
-        public void OnGet()
-        {
-        }
     }
 }
-
