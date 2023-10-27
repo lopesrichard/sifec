@@ -10,6 +10,7 @@ builder.Services.ConfigureRouting();
 builder.Services.ConfigureAuthentication();
 builder.Services.ConfigureRepositories();
 builder.Services.ConfigureServices();
+builder.Services.ConfigureControllers();
 
 var app = builder.Build();
 
@@ -24,4 +25,5 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRazorPages();
+app.MapControllers();
 app.Run();
