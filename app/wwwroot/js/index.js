@@ -1,5 +1,3 @@
-const BASE_URL = 'https://localhost:7259';
-
 const cache = {
   courses: [],
   semesters: [],
@@ -48,7 +46,7 @@ inputs.course.addEventListener('change', () => {
 });
 
 const loadInstitutions = async () => {
-  const response = await fetch(`${BASE_URL}/institutions`);
+  const response = await fetch('/institutions');
   const institutions = await response.json();
   const options = institutions.map((institution) => {
     const option = document.createElement('option');
@@ -61,7 +59,7 @@ const loadInstitutions = async () => {
 
 const loadCourses = async () => {
   inputs.course.value = '';
-  const response = await fetch(`${BASE_URL}/institutions/${institution.value}/courses`);
+  const response = await fetch(`/institutions/${institution.value}/courses`);
   const courses = await response.json();
   cache.courses = courses;
   const options = courses.map((course) => {
@@ -102,7 +100,7 @@ const setSemesters = () => {
 
 const loadCities = async () => {
   course.value = '';
-  const response = await fetch(`${BASE_URL}/cities`);
+  const response = await fetch('/cities');
   const cities = await response.json();
   cache.cities = cities;
   const options = cities.map((city) => {
@@ -133,7 +131,7 @@ finish.addEventListener('click', async (event) => {
   event.preventDefault();
   values.fee = Str.convert.float(inputs.fee.value);
   const body = JSON.stringify(values);
-  // const response = await fetch(`${BASE_URL}/simulations`, { method: 'POST', body });
+  // const response = await fetch('/simulations', { method: 'POST', body });
   const installment = document.getElementById('installment-value');
   const print = document.getElementById('print-link');
   installment.textContent = mask.money(85000);
