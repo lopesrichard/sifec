@@ -1,0 +1,108 @@
+.container {
+  background-image: url(/img/background.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.card {
+  width: 40%;
+}
+
+.btn {
+  width: 70%;
+  height: 50px;
+  font-size: 18px;
+}
+
+input,
+select {
+  height: 50px;
+  font-size: 18px;
+}
+
+:root {
+  --step-marker-steps: 2;
+  --step-marker-active-background-color: var(--primary);
+  --step-marker-background-color: lightgray;
+  --step-marker-line-width: 2px;
+  --step-marker-bullet-size: 20px;
+}
+
+.step-marker {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.step-marker ul {
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+}
+
+.step-marker li {
+  position: relative;
+  float: left;
+  text-align: center;
+  width: calc(100% / var(--step-marker-steps));
+}
+
+.step-marker li:before {
+  content: '';
+  display: block;
+  background-color: var(--step-marker-background-color);
+  width: var(--step-marker-bullet-size);
+  height: var(--step-marker-bullet-size);
+  border-radius: var(--step-marker-bullet-size);
+  position: relative;
+  left: 50%;
+  margin-left: calc(var(--step-marker-bullet-size) * -0.5);
+  z-index: 1;
+}
+
+.step-marker li.highlighted:before {
+  background-color: var(--step-marker-active-background-color);
+}
+
+.step-marker li + li:after {
+  content: '';
+  display: block;
+  width: 100%;
+  background-color: var(--step-marker-background-color);
+  height: var(--step-marker-line-width);
+  position: absolute;
+  left: -50%;
+  top: calc(var(--step-marker-bullet-size) / 2);
+  z-index: 0;
+}
+
+.step-marker li.highlighted:after {
+  background-color: var(--step-marker-active-background-color);
+}
+
+.simulation-icon {
+  color: var(--primary);
+  font-size: 140px;
+  margin: 20px 0;
+}
+
+.simulation-message {
+  font-size: 20px;
+}
+
+.simulation-value {
+  color: var(--primary);
+  font-size: 48px;
+  font-weight: 500;
+}
+
+.simulation-comments {
+  font-size: 16px;
+}

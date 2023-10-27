@@ -1,6 +1,98 @@
 ﻿@page
 @model Index
 
-<a href="/admin">Admin</a>
+@section Styles {
+    <link rel="stylesheet" href="~/css/index.css" />
+}
 
-<h1>Simulador</h1>
+@section Scripts {
+    <script src="~/js/index.js"></script>
+}
+
+<div class="header">
+    <vc:logo font-size="80" />
+</div>
+<div class="card p-5 border-0 shadow-sm">
+    <h1 class="text-center">Simulador</h1>
+    <form id="form" method="POST">
+        <div data-step="1">
+            <div class="step-marker w-100">
+                <ul>
+                    <li class="highlighted"></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="mb-3">
+                <label for="institution">Instituição</label>
+                <select class="form-select" id="institution" name="institution">
+                    <option value="" disabled selected>Selecione...</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="course">Curso</label>
+                <select class="form-select" id="course" name="course">
+                    <option value="" disabled selected>Selecione...</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="semester">Semestre</label>
+                <select class="form-select" id="semester" name="semester">
+                    <option value="" disabled selected>Selecione...</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="fee">Mensalidade</label>
+                <input data-mask="money" placeholder="R$ 0,00" class="form-control" type="text" id="fee" name="fee" />
+            </div>
+            <div class="w-100 text-center mt-5">
+                <button id="forward" class="btn btn-primary">Avançar</button>
+            </div>
+        </div>
+        <div data-step="2" class="d-none">
+            <div class="step-marker w-100">
+                <ul>
+                    <li class="highlighted"></li>
+                    <li class="highlighted"></li>
+                </ul>
+            </div>
+            <div class="mb-3">
+                <label for="name">Nome</label>
+                <input class="form-control" type="text" id="name" name="name" />
+            </div>
+            <div class="mb-3">
+                <label for="document">Document</label>
+                <input data-mask="cpf" placeholder="000.000.000-00" class="form-control" type="text" id="document"
+                    name="document" />
+            </div>
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input placeholder="example@email.com" class="form-control" type="text" id="email" name="email" />
+            </div>
+            <div class="mb-3">
+                <label for="city">Cidade</label>
+                <select class="form-select" id="city" name="city">
+                    <option value="" disabled selected>Selecione...</option>
+                </select>
+            </div>
+            <div class="w-100 text-center mt-5">
+                <button id="finish" class="btn btn-primary">Finalizar</button>
+            </div>
+        </div>
+        <div data-step="3" class="d-none">
+            <div class="w-100 text-center">
+                <i class="simulation-icon bi bi-check-circle-fill"></i>
+                <p class="simulation-message">Você pode financiar o seu semestre em até 6 parcelas de
+                    aproximadamente</p>
+                <p id="installment-value" class="simulation-value"></p>
+                <p class="simulation-comments">Sujeito à análise de crédito e outras comprovações</p>
+            </div>
+            <div class="w-100 text-center mt-5">
+                <a id="print-link" href="/" target="_blank">
+                    <button class="btn btn-primary" type="button">
+                        Imprimir
+                    </button>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
