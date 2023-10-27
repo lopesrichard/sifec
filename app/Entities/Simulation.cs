@@ -19,6 +19,9 @@ namespace App.Entities
         public required string ValidationKey { get; set; }
         public required DateTime CreatedAt { get; set; }
         public required bool WasConverted { get; set; }
+        public required Guid InstitutionId { get; set; }
+        public required Guid CourseId { get; set; }
+        public required Guid CityId { get; set; }
 
         public Institution Institution
         {
