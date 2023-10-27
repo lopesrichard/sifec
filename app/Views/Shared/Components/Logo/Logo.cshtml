@@ -1,0 +1,12 @@
+@model LogoViewComponent
+
+<style>
+    .Logo span {
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        font-size: @(Model.FontSize)px;
+    }
+</style>
+
+<div class="Logo">
+    <span class="text-@(Model.Dark ? "secondary" : "light")">SIFE<span class="text-primary">C</span></span>
+</div>
