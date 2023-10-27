@@ -2,10 +2,13 @@ html,
 body,
 .container {
   height: 100%;
+  background-color: var(--background);
 }
 
 .container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 * {
