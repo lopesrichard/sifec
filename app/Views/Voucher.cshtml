@@ -23,8 +23,9 @@
         realizada <strong>@(Model.Simulation.CreatedAt.ToLongDateString())</strong>.
     </p>
     <p>
-        O valor total contratado será de <strong>R$ @(Model.Simulation.TotalValue)</strong>, a ser pago em 12x de
-        <strong>R$ @(Model.Simulation.InstallmentValue)</strong> com juros de
+        O valor total contratado será de <strong>R$ @(Model.Simulation.TotalValue.ToString("0.00"))</strong>, a ser
+        pago em 12x de
+        <strong>R$ @(Model.Simulation.InstallmentValue.ToString("0.00"))</strong> com juros de
         <strong>@(Model.Simulation.Fee)%</strong> ao mês.
     </p>
     <br />

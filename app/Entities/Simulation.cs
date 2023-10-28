@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using App.Exceptions;
 
 namespace App.Entities
@@ -23,6 +24,7 @@ namespace App.Entities
         public required Guid CourseId { get; set; }
         public required Guid CityId { get; set; }
 
+        [JsonIgnore]
         public Institution Institution
         {
             set => _institution = value;
@@ -31,6 +33,7 @@ namespace App.Entities
 
         private Institution? _institution;
 
+        [JsonIgnore]
         public Course Course
         {
             set => _course = value;
@@ -39,6 +42,7 @@ namespace App.Entities
 
         private Course? _course;
 
+        [JsonIgnore]
         public City City
         {
             set => _city = value;

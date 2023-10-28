@@ -1,26 +1,102 @@
 using App.Entities;
+using App.Exceptions;
 using App.Models;
+using App.Repositories;
 using App.Results;
 
 namespace App.Services
 {
     public class SimulationService : ISimulationService
     {
-        public Task<Result<Simulation>> CreateSimulation(AddSimulationModel model)
-        {
-            // var simulation = new Simulation()
-            // {
-            //     InstitutionId = model.Institution,
-            //     CourseId = model.Course,
-            //     Semester = model.Semester,
-            //     Fee = model.Fee,
-            //     Name = model.Name,
-            //     Document = model.Document,
-            //     Email = model.Email,
-            //     CityId = model.City,
-            // };
+        private const int MONTHS_IN_A_SEMESTER = 6;
+        private readonly ICourseRepository _courseRepository;
+        private readonly ISimulationRepository _simulationRepository;
 
-            return null;
+        public SimulationService(ICourseRepository courseRepository, ISimulationRepository simulationRepository)
+        {
+            _courseRepository = courseRepository;
+            _simulationRepository = simulationRepository;
+        }
+
+        public async Task<Result<Simulation>> CreateSimulation(AddSimulationModel model)
+        {
+            var fee = await GetCourseFee(model);
+            var requestedAmount = CalculateRequestedAmount(model);
+            var totalValue = CalculateTotalValue(requestedAmount, fee.Data);
+            var installmentValue = CalculateInstallmentValue(totalValue);
+            var firstPaymentDue = CalculateFirstPaymentDue();
+            var lastPaymentDue = CalculateLastPaymentDue(firstPaymentDue);
+            var gracePeriodDays = CalculateGracePeriodDays(firstPaymentDue);
+
+            var simulation = new Simulation()
+            {
+                InstitutionId = model.Institution,
+                CourseId = model.Course,
+                Semester = model.Semester,
+                TuitionFee = model.Fee,
+                Name = model.Name,
+                Document = model.Document,
+                Email = model.Email,
+                CityId = model.City,
+                RequestedAmount = requestedAmount,
+                Fee = fee.Data,
+                TotalValue = totalValue,
+                InstallmentValue = installmentValue,
+                GracePeriodDays = gracePeriodDays,
+                FirstPaymentDue = firstPaymentDue,
+                LastPaymentDue = lastPaymentDue,
+                ValidationKey = Guid.NewGuid().ToString(),
+                CreatedAt = DateTime.UtcNow,
+                WasConverted = false,
+            };
+
+            try
+            {
+                await _simulationRepository.Insert(simulation);
+            }
+            catch
+            {
+                return new UnprocessableContentException();
+            }
+
+            return simulation;
+        }
+
+        private decimal CalculateRequestedAmount(AddSimulationModel model)
+        {
+            return model.Fee * MONTHS_IN_A_SEMESTER;
+        }
+
+        private decimal CalculateTotalValue(decimal amount, decimal fee)
+        {
+            return amount + amount * fee;
+        }
+
+        private decimal CalculateInstallmentValue(decimal total)
+        {
+            return total / MONTHS_IN_A_SEMESTER;
+        }
+
+        private DateTime CalculateFirstPaymentDue()
+        {
+            return DateTime.UtcNow.AddMonths(MONTHS_IN_A_SEMESTER);
+        }
+
+        private DateTime CalculateLastPaymentDue(DateTime firstPaymentDue)
+        {
+            return firstPaymentDue.AddMonths(MONTHS_IN_A_SEMESTER);
+        }
+
+        private int CalculateGracePeriodDays(DateTime firstPaymentDue)
+        {
+            return (int)firstPaymentDue.Subtract(DateTime.Now).TotalDays;
+        }
+
+        private async Task<Result<decimal>> GetCourseFee(AddSimulationModel model)
+        {
+            var course = await _courseRepository.Get(model.Course);
+            if (course == null) return new ResourceNotFoundException();
+            return course.Fee;
         }
     }
 }

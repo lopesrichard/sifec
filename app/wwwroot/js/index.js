@@ -131,11 +131,16 @@ finish.addEventListener('click', async (event) => {
   event.preventDefault();
   values.fee = Str.convert.float(inputs.fee.value);
   const body = JSON.stringify(values);
-  // const response = await fetch('/simulations', { method: 'POST', body });
+  const response = await fetch('/simulations', {
+    method: 'POST',
+    body,
+    headers: { 'content-type': 'application/json' },
+  });
+  const simulation = await response.json();
   const installment = document.getElementById('installment-value');
   const print = document.getElementById('print-link');
-  installment.textContent = mask.money(85000);
-  print.href = '/voucher/b1d91746-d602-47a6-a04c-c4b0de308791';
+  installment.textContent = mask.money(simulation.installmentValue.toFixed(2));
+  print.href = `/voucher/${simulation.id}`;
   steps[1].classList.add('d-none');
   steps[2].classList.remove('d-none');
 });
