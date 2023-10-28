@@ -34,7 +34,9 @@ namespace App.Pages
 
             var html = await _renderer.Render(nameof(Voucher), this);
 
-            var content = _pdf.CreateFromHtml(html);
+            var password = Simulation.Document.Replace(".", "")[..5];
+
+            var content = _pdf.CreateFromHtml(html, password);
 
             return File(content, "application/pdf");
         }

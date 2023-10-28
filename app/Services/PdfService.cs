@@ -11,7 +11,7 @@ namespace App.Services
             _acessor = acessor;
         }
 
-        public byte[] CreateFromHtml(string html)
+        public byte[] CreateFromHtml(string html, string? password = null)
         {
             var request = _acessor.HttpContext!.Request;
 
@@ -27,6 +27,11 @@ namespace App.Services
             var path = Directory.GetCurrentDirectory();
 
             var document = converter.ConvertHtmlString(html, $"{request.Scheme}://{request.Host}");
+
+            if (password != null)
+            {
+                document.Security.UserPassword = password;
+            }
 
             document.Save(ms);
             document.Close();
