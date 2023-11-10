@@ -5,26 +5,30 @@
     <link rel="stylesheet" href="~/css/login.css" />
 }
 
-<div class="card">
-    <div class="logo">
-        <span class="text-secondary">SIFE<span class="text-primary">C</span></span>
-    </div>
-    <form method="POST">
-        <div class="mb-3">
-            <input asp-for="Username" placeholder="Usuário" class="form-control" type="text" name="username" required />
+<div class="container">
+    <div class="card">
+        <div class="logo">
+            <span class="text-secondary">SIFE<span class="text-primary">C</span></span>
         </div>
-
-        <div class="mb-3">
-            <input asp-for="Password" placeholder="Senha" class="form-control" type="text" name="password" required />
-        </div>
-
-        @if (@Model.Message != null)
-        {
-            <div class="alert alert-warning" role="alert">
-                @Model.Message
+        <form method="POST">
+            <div class="mb-3">
+                <input asp-for="Username" placeholder="Usuário" class="form-control" type="text" name="username"
+                    required />
             </div>
-        }
 
-        <button class="btn btn-primary">Entrar</button>
-    </form>
+            <div class="mb-3">
+                <input asp-for="Password" placeholder="Senha" class="form-control" type="text" name="password"
+                    required />
+            </div>
+
+            @if (@Model.Message != null)
+            {
+                <div class="alert alert-warning" role="alert">
+                    @Model.Message
+                </div>
+            }
+
+            <button class="btn btn-primary">Entrar</button>
+        </form>
+    </div>
 </div>
