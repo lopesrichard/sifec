@@ -6,3 +6,42 @@
 }
 
 <h1>Dashboard</h1>
+<select id="year" class="form-select filter me-4"></select>
+<div class="row g-4 w-100">
+    <div class="col-12 col-lg-6">
+        <div class="chart-container p-4">
+            <h2>Simulações por instituição</h2>
+            <div class="h-100 py-5">
+                <canvas id="simulations-by-institution"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="chart-container p-4">
+            <h2>Simulações por curso</h2>
+            <div class="h-100 py-5">
+                <canvas id="simulations-by-course"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="chart-container p-4">
+            <h2>Conversões por instituição</h2>
+            <div class="h-100 py-5">
+                <canvas id="conversions-by-institution"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="chart-container p-4">
+            <h2>Conversões por curso</h2>
+            <div class="h-100 py-5">
+                <canvas id="conversions-by-course"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/dashboard.js"></script>
+}
