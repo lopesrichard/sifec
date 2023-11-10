@@ -1,0 +1,10 @@
+.chart-container {
+  background-color: var(--background);
+  height: 40vh;
+}
+
+.filter {
+  width: 100px;
+  float: right;
+  height: 40px;
+}
