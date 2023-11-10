@@ -1,0 +1,30 @@
+:root {
+  --side-bar-width: 280px;
+}
+
+header {
+  background-color: var(--secondary);
+  height: 100px;
+  width: 100%;
+}
+
+aside {
+  background-color: var(--secondary);
+  width: var(--side-bar-width);
+  text-align: center;
+}
+
+main {
+  padding: 40px;
+  background-color: white;
+  height: 100%;
+  width: calc(100% - var(--side-bar-width));
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 18px;
+}
