@@ -14,6 +14,7 @@ namespace App.Configuration
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ISimulationService, SimulationService>();
+            services.AddScoped<IDashboardService, DashboardService>();
         }
     }
 }

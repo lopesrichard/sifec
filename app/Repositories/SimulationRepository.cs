@@ -1,3 +1,4 @@
+using System.Collections;
 using App.Data;
 using App.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,46 @@ namespace App.Repositories
                 .Include(s => s.Institution)
                 .Include(s => s.City)
                 .SingleOrDefaultAsync(s => s.Id == id);
+        }
+
+        public async Task<IDictionary<Institution, int>> CountByInstitution(int year)
+        {
+            return await Set
+                .Where(simulation => simulation.CreatedAt.Year == year)
+                .GroupBy(simulation => simulation.Institution.Id)
+                .Select(group => KeyValuePair.Create(group.First().Institution, group.Count()))
+                .ToDictionaryAsync(item => item.Key, item => item.Value);
+        }
+
+        public async Task<IDictionary<Course, int>> CountByCourse(int year)
+        {
+            return await Set
+                .Include(simulation => simulation.Course.Institution)
+                .Where(simulation => simulation.CreatedAt.Year == year)
+                .GroupBy(simulation => simulation.Course.Id)
+                .Select(group => KeyValuePair.Create(group.First().Course, group.Count()))
+                .ToDictionaryAsync(item => item.Key, item => item.Value);
+        }
+
+        public async Task<IDictionary<Institution, int>> CountConversionsByInstitution(int year)
+        {
+            return await Set
+                .Where(simulation => simulation.WasConverted)
+                .Where(simulation => simulation.CreatedAt.Year == year)
+                .GroupBy(simulation => simulation.Institution.Id)
+                .Select(group => KeyValuePair.Create(group.First().Institution, group.Count()))
+                .ToDictionaryAsync(item => item.Key, item => item.Value);
+        }
+
+        public async Task<IDictionary<Course, int>> CountConversionsByCourse(int year)
+        {
+            return await Set
+                .Include(simulation => simulation.Course.Institution)
+                .Where(simulation => simulation.WasConverted)
+                .Where(simulation => simulation.CreatedAt.Year == year)
+                .GroupBy(simulation => simulation.Course.Id)
+                .Select(group => KeyValuePair.Create(group.First().Course, group.Count()))
+                .ToDictionaryAsync(item => item.Key, item => item.Value);
         }
     }
 }

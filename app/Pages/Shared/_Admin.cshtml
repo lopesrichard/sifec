@@ -4,10 +4,20 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/admin.css" />
-    @RenderSection("Styles")
+    @RenderSection("Styles", required: false)
 }
 
-<aside>
-    <a href="/admin/logout">Sair</a>
-</aside>
-@RenderBody()
+<header></header>
+<div class="d-flex">
+    <aside>
+        <a href="/admin/logout">Sair</a>
+    </aside>
+    <main>
+        @RenderBody()
+    </main>
+</div>
+
+@section Scripts {
+    <script src="~/lib/chart-js/dist/chart.umd.js"></script>
+    @RenderSection("Scripts", required: false)
+}
