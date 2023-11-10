@@ -7,10 +7,15 @@
     @RenderSection("Styles")
 }
 
+<header></header>
+<div class="d-flex">
 <aside>
     <a href="/admin/logout">Sair</a>
 </aside>
+    <main>
 @RenderBody()
+    </main>
+</div>
 @section Scripts {
     <script src="~/lib/chart-js/dist/chart.umd.js"></script>
     @RenderSection("Scripts", required: false)
