@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = "_Layout";
 }
 
@@ -11,3 +11,7 @@
     <a href="/admin/logout">Sair</a>
 </aside>
 @RenderBody()
+@section Scripts {
+    <script src="~/lib/chart-js/dist/chart.umd.js"></script>
+    @RenderSection("Scripts", required: false)
+}
