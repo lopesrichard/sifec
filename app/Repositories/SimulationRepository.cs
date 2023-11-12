@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Linq.Expressions;
 using App.Data;
 using App.Entities;
+using App.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Repositories
@@ -58,6 +60,16 @@ namespace App.Repositories
                 .GroupBy(simulation => simulation.Course.Id)
                 .Select(group => KeyValuePair.Create(group.First().Course, group.Count()))
                 .ToDictionaryAsync(item => item.Key, item => item.Value);
+        }
+
+        public override async Task<IEnumerable<Simulation>> List(int page, int limit, Expression<Func<Simulation, bool>>? predicate = null)
+        {
+            return await Set
+                .Include(simulation => simulation.Course)
+                .Include(simulation => simulation.Institution)
+                .OrderByDescending(simulation => simulation.CreatedAt)
+                .Paginate(page, limit)
+                .ToListAsync();
         }
     }
 }
