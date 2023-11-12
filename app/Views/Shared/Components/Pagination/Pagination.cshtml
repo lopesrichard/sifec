@@ -1,0 +1,34 @@
+@model PaginationViewComponent
+
+@{
+    var first = @Model.CurrentPage * Model.PageSize - Model.PageSize + 1;
+    var maximum = @Model.CurrentPage * Model.PageSize;
+    var last = maximum > @Model.Total ? @Model.Total : maximum;
+    var current = @Model.CurrentPage == 1 ? "10" : $"{first} - {last}";
+    var pages = @Model.Total / Model.PageSize + 1;
+    var active = (int i) => i == @Model.CurrentPage ? "active" : "";
+    var previous = @Model.CurrentPage - 1;
+    var next = @Model.CurrentPage + 1;
+    var previousDisabled = previous <= 0 ? "disabled" : "";
+    var nextDisabled = next > pages ? "disabled" : "";
+}
+
+<div class="d-flex justify-content-between">
+    <small>
+        Exibindo @current registros de @Model.Total
+    </small>
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item @previousDisabled">
+                <a class="page-link" href="?page=@previous">Anterior</a>
+            </li>
+            @for (var i = 1; i <= @pages; i++)
+            {
+                <li class="page-item @active(@i)"><a class="page-link" href="?page=@i">@i</a></li>
+            }
+            <li class="page-item @nextDisabled">
+                <a class="page-link" href="?page=@next">Próximo</a>
+            </li>
+        </ul>
+    </nav>
+</div>
