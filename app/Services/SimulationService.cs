@@ -70,7 +70,7 @@ namespace App.Services
 
         private decimal CalculateTotalValue(decimal amount, decimal fee)
         {
-            return amount + amount * fee;
+            return (decimal)((double)amount * Math.Pow((double)(1 + fee / 100), MONTHS_IN_A_SEMESTER - 1));
         }
 
         private decimal CalculateInstallmentValue(decimal total)
@@ -109,6 +109,13 @@ namespace App.Services
         public async Task<Result<int>> CountSimulations()
         {
             return await _simulationRepository.Count();
+        }
+
+        public async Task<Result<Simulation>> GetSimulation(Guid id)
+        {
+            var simulation = await _simulationRepository.Get(id);
+            if (simulation == null) return new ResourceNotFoundException();
+            return simulation;
         }
     }
 }

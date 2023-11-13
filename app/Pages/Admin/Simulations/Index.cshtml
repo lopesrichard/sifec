@@ -1,5 +1,5 @@
-@page
-@model Simulations
+@page   
+@model Index
 @using App.Extensions
 
 @section Styles {
@@ -26,11 +26,11 @@
                 <td>@simulation.Institution.Name</td>
                 <td>@simulation.Course.Name</td>
                 <td>R$ @simulation.TotalValue.Format()</td>
-                <td>@simulation.CreatedAt.ToLongDateString()</td>
-                <td><a href="simulations/@simulation.Id" class="link"><i class="bi bi-zoom-in"></i></a></td>
+                <td>@simulation.CreatedAt.ToString()</td>
+                <td><a href="details/@simulation.Id" class="link"><i class="bi bi-zoom-in"></i></a></td>
             </tr>
         }
     </tbody>
 </table>
 
-<vc:pagination current-page="@Model.CurrentPage" page-size="@Model.PageSize" total="@Model.SimulationCount" />
+<vc:pagination current-page="@Model.CurrentPage" page-size="@Model.PageSize" total="@Model.SimulationCount" url-prefix="details" />

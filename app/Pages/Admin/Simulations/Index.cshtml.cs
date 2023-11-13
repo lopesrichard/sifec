@@ -2,9 +2,9 @@ using App.Entities;
 using App.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.Pages
+namespace App.Pages.Admin.Simulations
 {
-    public class Simulations : Page
+    public class Index : Page
     {
         private readonly ISimulationService _service;
 
@@ -13,7 +13,7 @@ namespace App.Pages
         public int SimulationCount { get; set; }
         public IEnumerable<Simulation> SimulationList { get; set; } = new List<Simulation>();
 
-        public Simulations(ISimulationService service) : base("Simulações")
+        public Index(ISimulationService service) : base("Simulações")
         {
             _service = service;
         }

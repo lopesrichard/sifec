@@ -1,0 +1,59 @@
+@page "{simulation}"
+@model Details
+@using App.Extensions
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/simulations.css" />
+}
+
+<h1>Simulações > @Model.Simulation.Name - @Model.Simulation.Course.Name</h1>
+
+<div class="description row mt-5">
+    <dl class="row col-sm-5">
+        <dt class="col-sm-4">Instituição</dt>
+        <dd class="col-sm-8">@Model.Simulation.Institution.Name</dd>
+
+        <dt class="col-sm-4">Curso</dt>
+        <dd class="col-sm-8">@Model.Simulation.Course.Name</dd>
+
+        <dt class="col-sm-4">Semestre</dt>
+        <dd class="col-sm-8">@(Model.Simulation.Semester)º Semestre</dd>
+
+        <dt class="col-sm-4">Mensalidade</dt>
+        <dd class="col-sm-8">R$ @Model.Simulation.TuitionFee.Format()</dd>
+
+        <dt class="col-sm-4">CPF</dt>
+        <dd class="col-sm-8">@Model.Simulation.Document</dd>
+
+        <dt class="col-sm-4">Nome</dt>
+        <dd class="col-sm-8">@Model.Simulation.Name</dd>
+
+        <dt class="col-sm-4">E-mail</dt>
+        <dd class="col-sm-8">@Model.Simulation.Email</dd>
+    </dl>
+    <dl class="row col-sm-5">
+        <dt class="col-sm-4">Data da Contratação</dt>
+        <dd class="col-sm-8">@Model.Simulation.CreatedAt.ToString("G")</dd>
+
+        <dt class="col-sm-4">Valor Solicitado</dt>
+        <dd class="col-sm-8">R$ @Model.Simulation.RequestedAmount.Format()</dd>
+
+        <dt class="col-sm-4">Valor a Contratar</dt>
+        <dd class="col-sm-8">R$ @Model.Simulation.TotalValue.Format()</dd>
+
+        <dt class="col-sm-4">Taxa</dt>
+        <dd class="col-sm-8">@Model.Simulation.Fee.Format() %</dd>
+
+        <dt class="col-sm-4">Quantidade de Parcelas</dt>
+        <dd class="col-sm-8">6 parcelas</dd>
+
+        <dt class="col-sm-4">Valor Aproximado da Parcela</dt>
+        <dd class="col-sm-8">R$ @Model.Simulation.InstallmentValue.Format()</dd>
+
+        <dt class="col-sm-4">Vencimento da Primeira Parcela</dt>
+        <dd class="col-sm-8">@Model.Simulation.FirstPaymentDue.ToString("d")</dd>
+
+        <dt class="col-sm-4">Vencimento da Última Parcela</dt>
+        <dd class="col-sm-8">@Model.Simulation.LastPaymentDue.ToString("d")</dd>
+    </dl>
+</div>

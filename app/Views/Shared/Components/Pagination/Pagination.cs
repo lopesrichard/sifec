@@ -11,6 +11,7 @@ public class PaginationViewComponent : ViewComponent
         CurrentPage = currentPage;
         PageSize = pageSize;
         Total = total;
+
         return View("Pagination", this);
     }
 }

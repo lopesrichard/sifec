@@ -13,7 +13,7 @@ namespace App.Repositories
         {
         }
 
-        public new async Task<Simulation?> Get(Guid id)
+        public override async Task<Simulation?> Get(Guid id)
         {
             return await Set
                 .Include(s => s.Course)
