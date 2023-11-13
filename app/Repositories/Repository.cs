@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using App.Data;
 using App.Entities;
+using App.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Repositories
@@ -16,49 +17,55 @@ namespace App.Repositories
             Context = context;
         }
 
-        public async Task<T?> Get(Guid id)
+        public virtual async Task<T?> Get(Guid id)
         {
             return await Set.FindAsync(id);
         }
 
-        public async Task<T?> Get(Expression<Func<T, bool>> predicate)
+        public virtual async Task<T?> Get(Expression<Func<T, bool>> predicate)
         {
             return await Set.Where(predicate).SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<T>> List(Expression<Func<T, bool>>? predicate = null)
+        public virtual async Task<int> Count(Expression<Func<T, bool>>? predicate = null)
+        {
+            var query = Set.AsQueryable();
+            if (predicate != null) query = query.Where(predicate);
+            return await query.CountAsync();
+        }
+
+        public virtual async Task<IEnumerable<T>> List(Expression<Func<T, bool>>? predicate = null)
         {
             var query = Set.AsQueryable();
             if (predicate != null) query = query.Where(predicate);
             return await query.ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> List(int page, int limit, Expression<Func<T, bool>>? predicate = null)
+        public virtual async Task<IEnumerable<T>> List(int page, int limit, Expression<Func<T, bool>>? predicate = null)
         {
-            var skip = page == 1 ? 0 : (page - 1) * limit;
-            var query = Set.Skip(skip).Take(limit);
+            var query = Set.Paginate(page, limit);
             if (predicate != null) query = query.Where(predicate);
             return await query.ToListAsync();
         }
 
-        public async Task Insert(T entity)
+        public virtual async Task Insert(T entity)
         {
             Set.Add(entity);
             await SaveChangesAsync();
         }
 
-        public async Task Update(T entity)
+        public virtual async Task Update(T entity)
         {
             Set.Update(entity);
             await SaveChangesAsync();
         }
 
-        public async Task Delete(T entity)
+        public virtual async Task Delete(T entity)
         {
             Set.Remove(entity);
             await SaveChangesAsync();
         }
 
-        public async Task SaveChangesAsync() => await Context.SaveChangesAsync();
+        public virtual async Task SaveChangesAsync() => await Context.SaveChangesAsync();
     }
 }

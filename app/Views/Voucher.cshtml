@@ -1,4 +1,5 @@
 ﻿@model App.Pages.Voucher
+@using App.Extensions
 
 @{
     Layout = "_Layout";
@@ -23,9 +24,9 @@
         realizada <strong>@(Model.Simulation.CreatedAt.ToLongDateString())</strong>.
     </p>
     <p>
-        O valor total contratado será de <strong>R$ @(Model.Simulation.TotalValue.ToString("0.00"))</strong>, a ser
+        O valor total contratado será de <strong>R$ @(Model.Simulation.TotalValue.Format())</strong>, a ser
         pago em 12x de
-        <strong>R$ @(Model.Simulation.InstallmentValue.ToString("0.00"))</strong> com juros de
+        <strong>R$ @(Model.Simulation.InstallmentValue.Format())</strong> com juros de
         <strong>@(Model.Simulation.Fee)%</strong> ao mês.
     </p>
     <br />

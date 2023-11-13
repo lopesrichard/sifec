@@ -1,7 +1,7 @@
 const links = document.getElementsByClassName('link');
 
 for (const link of links) {
-  if (link.getAttribute('href') === window.location.pathname) {
+  if (window.location.pathname.includes(link.getAttribute('href'))) {
     link.classList.add('active');
   }
 }

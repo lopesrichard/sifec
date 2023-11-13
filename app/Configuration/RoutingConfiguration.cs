@@ -8,6 +8,7 @@ namespace App.Configuration
             {
                 options.LowercaseUrls = true;
                 options.LowercaseQueryStrings = true;
+                options.AppendTrailingSlash = true;
             });
         }
     }
