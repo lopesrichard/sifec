@@ -1,3 +1,4 @@
+using App.Components;
 using App.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +27,7 @@ namespace App.Pages.Admin
 
             if (result.Success)
             {
-                return RedirectToPage("/admin/dashboard");
+                return RedirectToPage("/Admin/Dashboard");
             }
 
             Message = result.Exception.Message;

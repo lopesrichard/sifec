@@ -1,3 +1,4 @@
+using App.Components;
 using App.Entities;
 using App.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,9 @@ namespace App.Pages.Admin.Simulations
             _service = service;
         }
 
-        public async Task<IActionResult> OnGet([FromRoute] Guid simulation)
+        public async Task<IActionResult> OnGet([FromRoute] Guid simulationId)
         {
-            var result = await _service.GetSimulation(simulation);
+            var result = await _service.GetSimulation(simulationId);
 
             if (!result.Success)
             {

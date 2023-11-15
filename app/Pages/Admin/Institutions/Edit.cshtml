@@ -1,0 +1,40 @@
+@page
+@model Edit
+@using App.Extensions
+
+@section Styles {
+        <link rel="stylesheet" href="~/css/simulations.css" />
+}
+
+<h1>Instituições > @Model.Model.Name</h1>
+
+<div class="d-flex flex-column flex-grow-1 justify-content-between col-12 col-lg-6">
+    <form id="save" method="POST" class="mt-5">
+        <div class="mb-3">
+            <label for="code">Sigla</label>
+            <input asp-for="Model.Code" class="form-control" type="text" name="code" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="name">Nome</label>
+            <input asp-for="Model.Name" class="form-control" type="text" name="name" required />
+        </div>
+
+        @if (@Model.Message != null)
+        {
+                <div class="alert alert-warning" role="alert">
+                @Model.Message
+                </div>
+        }
+
+        <a href="../@Model.InstitutionId/courses/" class="btn btn-secondary mt-4">Gerenciar Cursos</a>
+    </form>
+    <div class="d-flex justify-content-between">
+        <form id="remove" method="POST">
+            <button form="remove" type="submit" class="btn btn-danger align-self-end" asp-page-handler="Remove">Remover
+                Instituição</button>
+        </form>
+        <button form="save" type="submit" class="btn btn-secondary align-self-end"
+            asp-page-handler="Save">Salvar</button>
+    </div>
+</div>

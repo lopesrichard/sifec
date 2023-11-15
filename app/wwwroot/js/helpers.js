@@ -67,7 +67,7 @@ mask.money = (money, reverse = true) => {
 };
 
 mask.percentage = (money, reverse = true) => {
-  const value = str.clean.number(money);
+  const value = Str.clean.number(money);
 
   if (value == '') {
     return null;
@@ -76,7 +76,7 @@ mask.percentage = (money, reverse = true) => {
   const str = value.toString();
   const replaced = str.replace(/^0+/g, '');
 
-  return '% ' + mask('##,##', replaced.padStart(3, '0'), reverse);
+  return mask('##,##', replaced.padStart(3, '0'), reverse);
 };
 
 const elements = document.querySelectorAll('[data-mask]');

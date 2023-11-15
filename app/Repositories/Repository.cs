@@ -43,8 +43,9 @@ namespace App.Repositories
 
         public virtual async Task<IEnumerable<T>> List(int page, int limit, Expression<Func<T, bool>>? predicate = null)
         {
-            var query = Set.Paginate(page, limit);
+            var query = Set.AsQueryable();
             if (predicate != null) query = query.Where(predicate);
+            query = query.Paginate(page, limit);
             return await query.ToListAsync();
         }
 

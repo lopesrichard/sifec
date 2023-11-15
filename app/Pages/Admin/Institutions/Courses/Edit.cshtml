@@ -1,0 +1,48 @@
+@page
+@model Edit
+@using App.Extensions
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/simulations.css" />
+}
+
+<h1>Instituições > @Model.Model.Name</h1>
+
+<div class="d-flex flex-column flex-grow-1 justify-content-between col-12 col-lg-6">
+    <form id="save" method="POST" class="mt-5">
+        <div class="mb-3">
+            <label for="code">Sigla</label>
+            <input asp-for="Model.Code" class="form-control" type="text" name="code" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="name">Nome</label>
+            <input asp-for="Model.Name" class="form-control" type="text" name="name" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="name">Duração</label>
+            <input asp-for="Model.Duration" class="form-control" type="number" name="duration" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="name">Taxa (%)</label>
+            <input asp-for="Model.Fee" class="form-control" type="text" name="fee" required data-mask="percentage" />
+        </div>
+
+        @if (@Model.Message != null)
+        {
+            <div class="alert alert-warning" role="alert">
+                @Model.Message
+            </div>
+        }
+    </form>
+    <div class="d-flex justify-content-between">
+        <form id="remove" method="POST">
+            <button form="remove" type="submit" class="btn btn-danger align-self-end" asp-page-handler="Remove">Remover
+                Curso</button>
+        </form>
+        <button form="save" type="submit" class="btn btn-secondary align-self-end"
+            asp-page-handler="Save">Salvar</button>
+    </div>
+</div>

@@ -4,8 +4,9 @@
     var first = @Model.CurrentPage * Model.PageSize - Model.PageSize + 1;
     var maximum = @Model.CurrentPage * Model.PageSize;
     var last = maximum > @Model.Total ? @Model.Total : maximum;
-    var current = @Model.CurrentPage == 1 ? "10" : $"{first} - {last}";
-    var pages = @Model.Total / Model.PageSize + 1;
+    var size = @Model.Total > @Model.PageSize ? @Model.PageSize : @Model.Total;
+    var current = @Model.CurrentPage == 1 ? $"{size}" : $"{first} - {last}";
+    var pages = Math.Ceiling((double)@Model.Total / (double)Model.PageSize);
     var active = (int i) => i == @Model.CurrentPage ? "active" : "";
     var previous = @Model.CurrentPage - 1;
     var next = @Model.CurrentPage + 1;

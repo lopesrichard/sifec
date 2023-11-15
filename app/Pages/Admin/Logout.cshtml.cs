@@ -1,3 +1,4 @@
+using App.Components;
 using App.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,7 @@ namespace App.Pages.Admin
         public async Task<IActionResult> OnGetAsync()
         {
             await _service.Logout();
-            return RedirectToPage("/admin/login");
+            return RedirectToPage("/Admin/Login");
         }
     }
 }
