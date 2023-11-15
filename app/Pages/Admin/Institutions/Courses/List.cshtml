@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="~/css/simulations.css" />
 }
 
-<h1>Instituições</h1>
-<a href="new" class="btn btn-secondary align-self-end px-4">Novo Curso</a>
+<h1><a href="../../" class="breadcrumb-link">Instituições</a> > <a href="../edit/"
+        class="breadcrumb-link">@Model.Institution.Name</a> > Cursos</h1>
+<a href="new/" class="btn btn-secondary align-self-end px-4">Novo Curso</a>
 <table class="table table-borderless mt-2">
     <thead>
         <tr>
@@ -22,7 +23,7 @@
             <tr>
                 <td>@course.Code</td>
                 <td>@course.Name</td>
-                <td><a href="@course.Id/edit" class="link"><i class="bi bi-pencil-square"></i></a></td>
+                <td><a href="@course.Id/edit/" class="link"><i class="bi bi-pencil-square"></i></a></td>
             </tr>
         }
     </tbody>

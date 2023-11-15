@@ -120,3 +120,12 @@ select {
 .btn {
   width: 200px;
 }
+
+.breadcrumb-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}

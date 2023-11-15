@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="~/css/simulations.css" />
 }
 
-<h1>Simulações > @Model.Simulation.Name - @Model.Simulation.Course.Name</h1>
+<h1><a href=".." class="breadcrumb-link">Simulações</a> > @Model.Simulation.Name - @Model.Simulation.Course.Name</h1>
 
 <div class="description row mt-5">
     <dl class="row col-sm-5">
@@ -55,5 +55,8 @@
 
         <dt class="col-sm-4">Vencimento da Última Parcela</dt>
         <dd class="col-sm-8">@Model.Simulation.LastPaymentDue.ToString("d")</dd>
+
+        <dt class="col-sm-4">Conversão</dt>
+        <dd class="col-sm-8">@(Model.Simulation.WasConverted ? "Sim" : "Não")</dd>
     </dl>
 </div>

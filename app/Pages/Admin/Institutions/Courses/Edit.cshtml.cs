@@ -1,4 +1,5 @@
 using App.Components;
+using App.Entities;
 using App.Models;
 using App.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -7,29 +8,33 @@ namespace App.Pages.Admin.Institutions.Courses
 {
     public class Edit : Page
     {
-        private readonly ICourseService _service;
+        private readonly IInstitutionService _institutionService;
+        private readonly ICourseService _courseService;
 
         public required UpdateCourseModel Model { get; set; }
         public Guid InstitutionId { get; set; }
         public Guid CourseId { get; set; }
         public string? Message { get; set; }
+        public Institution Institution { get; set; }
 
-        public Edit(ICourseService service) : base("Editar Curso")
+        public Edit(ICourseService courseService, IInstitutionService institutionService) : base("Editar Curso")
         {
-            _service = service;
+            _courseService = courseService;
+            _institutionService = institutionService;
         }
 
         public async Task<IActionResult> OnGet(Guid institutionId, Guid courseId)
         {
-            InstitutionId = institutionId;
             CourseId = courseId;
 
-            var result = await _service.GetCourse(institutionId, courseId);
+            var result = await _courseService.GetCourse(institutionId, courseId);
 
             if (!result.Success)
             {
                 return NotFound();
             }
+
+            await GetInstitution(institutionId);
 
             Model = new UpdateCourseModel()
             {
@@ -46,7 +51,7 @@ namespace App.Pages.Admin.Institutions.Courses
         {
             try
             {
-                await _service.UpdateCourse(institutionId, courseId, model);
+                await _courseService.UpdateCourse(institutionId, courseId, model);
 
                 return RedirectToPage($"/Admin/Institutions/Courses/List", new { institutionId });
             }
@@ -61,7 +66,7 @@ namespace App.Pages.Admin.Institutions.Courses
         {
             try
             {
-                await _service.DeleteCourse(institutionId, courseId);
+                await _courseService.DeleteCourse(institutionId, courseId);
 
                 return RedirectToPage("/Admin/Institutions/Courses/List", new { institutionId });
             }
@@ -69,6 +74,16 @@ namespace App.Pages.Admin.Institutions.Courses
             {
                 Message = ex.Message;
                 return Page();
+            }
+        }
+
+        private async Task GetInstitution(Guid institutionId)
+        {
+            var result = await _institutionService.GetInstitution(institutionId);
+
+            if (result.Success)
+            {
+                Institution = result.Data;
             }
         }
     }

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="~/css/simulations.css" />
 }
 
-<h1>Instituições > @Model.Model.Name</h1>
+<h1><a href="../.." class="breadcrumb-link">Instituições</a> > @Model.Model.Name</h1>
 
 <div class="d-flex flex-column flex-grow-1 justify-content-between col-12 col-lg-6">
     <form id="save" method="POST" class="mt-5">
@@ -27,7 +27,7 @@
                 </div>
         }
 
-        <a href="../@Model.InstitutionId/courses/" class="btn btn-secondary mt-4">Gerenciar Cursos</a>
+        <a href="../courses/" class="btn btn-secondary mt-4">Gerenciar Cursos</a>
     </form>
     <div class="d-flex justify-content-between">
         <form id="remove" method="POST">

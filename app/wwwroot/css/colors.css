@@ -9,4 +9,49 @@
   --danger: #ed4700;
   --danger-dark: #c94107;
   --background: #f8f8f8;
+  --succcess: rgb(24, 164, 29);
+}
+
+.color-primary {
+  color: var(--primary);
+}
+
+.color-primary-rgb {
+  color: var(--primary-rgb);
+}
+
+.color-primary-light {
+  color: var(--primary-light);
+}
+
+.color-primary-dark {
+  color: var(--primary-dark);
+}
+
+.color-secondary {
+  color: var(--secondary);
+}
+
+.color-secondary-rgb {
+  color: var(--secondary-rgb);
+}
+
+.color-secondary-dark {
+  color: var(--secondary-dark);
+}
+
+.color-danger {
+  color: var(--danger);
+}
+
+.color-danger-dark {
+  color: var(--danger-dark);
+}
+
+.color-background {
+  color: var(--background);
+}
+
+.color-succcess {
+  color: var(--succcess);
 }
