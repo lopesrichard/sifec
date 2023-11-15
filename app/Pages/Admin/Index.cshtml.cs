@@ -1,3 +1,4 @@
+using App.Components;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Pages.Admin
@@ -10,7 +11,7 @@ namespace App.Pages.Admin
 
         public IActionResult OnGet()
         {
-            return RedirectToPagePermanent("/admin/dashboard");
+            return RedirectToPagePermanent("/Admin/Dashboard");
         }
     }
 }

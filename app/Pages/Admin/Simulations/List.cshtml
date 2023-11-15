@@ -1,0 +1,38 @@
+@page
+@model List
+@using App.Extensions
+
+@section Styles {
+        <link rel="stylesheet" href="~/css/simulations.css" />
+}
+
+<h1>Simulações</h1>
+<table class="table table-borderless mt-5">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Instituição</th>
+            <th>Curso</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th class="text-center">Conversão</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var simulation in Model.SimulationList)
+        {
+                <tr>
+                    <td>@simulation.Name</td>
+                    <td>@simulation.Institution.Name</td>
+                    <td>@simulation.Course.Name</td>
+                    <td>R$ @simulation.TotalValue.Format()</td>
+                    <td>@simulation.CreatedAt.ToString()</td>
+                    <td class="text-center">@if (simulation.WasConverted) { <i class="bi bi-check color-succcess"></i> } else { <i class="bi bi-x color-danger"></i> }</td>
+                    <td><a href="@simulation.Id/" class="link"><i class="bi bi-zoom-in"></i></a></td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+<vc:pagination current-page="@Model.CurrentPage" page-size="@Model.PageSize" total="@Model.SimulationCount" />

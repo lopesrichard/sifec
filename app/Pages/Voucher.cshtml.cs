@@ -1,8 +1,7 @@
-﻿using System.Net.WebSockets;
+﻿using App.Components;
 using App.Entities;
 using App.Services;
 using Microsoft.AspNetCore.Mvc;
-using SelectPdf;
 
 namespace App.Pages
 {
@@ -21,13 +20,13 @@ namespace App.Pages
             _pdf = pdf;
         }
 
-        public async Task<IActionResult> OnGet([FromRoute] Guid simulation)
+        public async Task<IActionResult> OnGet([FromRoute] Guid simulationId)
         {
-            var result = await _service.GetSimulation(simulation);
+            var result = await _service.GetSimulation(simulationId);
 
             if (!result.Success)
             {
-                return RedirectToPage("/404");
+                return RedirectToPage("/Index");
             }
 
             Simulation = result.Data;

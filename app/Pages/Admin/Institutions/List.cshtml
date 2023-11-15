@@ -1,0 +1,31 @@
+@page
+@model List
+@using App.Extensions
+
+@section Styles {
+        <link rel="stylesheet" href="~/css/simulations.css" />
+}
+
+<h1>Instituições</h1>
+<a href="new/" class="btn btn-secondary align-self-end px-4">Nova Instituição</a>
+<table class="table table-borderless mt-2">
+    <thead>
+        <tr>
+            <th>Sigla</th>
+            <th>Nome</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var institution in Model.InstitutionList)
+        {
+                <tr>
+                    <td>@institution.Code</td>
+                    <td>@institution.Name</td>
+                    <td><a href="@institution.Id/edit/" class="link"><i class="bi bi-pencil-square"></i></a></td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+<vc:pagination current-page="@Model.CurrentPage" page-size="@Model.PageSize" total="@Model.InstitutionCount" />

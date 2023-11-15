@@ -1,3 +1,5 @@
+using App.Components;
+
 namespace App.Pages.Admin
 {
     public class Dashboard : Page
